@@ -2,9 +2,9 @@
 
 Working source code / firmware for the MST70*-lf series of MSTAR Video/LCD controller IC's:
 This has currently been tested with the following IC's:
-MST703-LF
-MST705-LF
-MST706-LF
+- MST703-LF
+- MST705-LF
+- MST706-LF
 
 Use google to find the appropriate datasheet for the chip you're using, i.e., for the pinouts, but the configuration register settings for all of these should be more/less the same.
 
