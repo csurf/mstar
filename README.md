@@ -1,4 +1,4 @@
-# MSTAR LCD Controller Firmare
+# MSTAR LCD Controller Firmware
 
 Working source code / firmware for the MST70*-lf series of MSTAR Video/LCD controller IC's:
 This has currently been tested with the following IC's:
