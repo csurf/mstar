@@ -1,0 +1,11 @@
+build/*
+dox/*
+project/*.H*
+project/*.bin
+project/*.log
+project/*.uvopt
+project/*.uvgui.*
+project/env.sh
+project/run_build.sh
+project/update_docs.sh
+store/*
