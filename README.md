@@ -56,7 +56,7 @@ flashrom -p mstarddc_spi:dev=/dev/i2c-1:0x49 -w firmware_image.bin
 
 ## BASIC WORKING CONCEPTS
 
-The MSTAR ASICs have an embedded 8051 microcontroller that is used to configure various internal configuration registers. On startup, the configuration registers need to be correctly initialized based on the PCB layout, LCD type&size, and incoming signal type. Also, the configuration needs to be constantly monitored & adjusted based on the condition of the incoming video signal. Keypad inputs are also monitored for handling features such as the built-in OSD & 'input select' functionality.
+The MSTAR ASICs have an embedded 8051 microcontroller that is used to configure various internal configuration registers that control the behavior of the video decoder & LCD driver. On startup, these configuration registers need to be correctly initialized based on the PCB layout, LCD type&size, and incoming signal type&port. Also, the configuration needs to be constantly monitored & adjusted based on the condition of the incoming video signal. Keypad inputs are also monitored for handling features such as the built-in OSD & 'input select' functionality.
 
 The MSTAR chips also expose GPIO & PWM functionality on certain pins which can be used to control external devices such as an LCD backlight, video tuner/receiver, LED's, etc.
 
