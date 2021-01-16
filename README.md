@@ -25,10 +25,12 @@ Each board / LCD definition file will have various config options that can vary 
 Eventually, I plan to add templates & build images for the most common PCB board & LCD screen combinations.
 
 ## BUILDING
-The source code is built via a Keil Compiler project in order to build the binary firmware image. Eventually, I might look into porting it over to [SDCC](http://sdcc.sourceforge.net/), but it's not worth the effort right now. I, myself, run Keil via 'wine' within a linux environment, but running Keil in Windows should work as well.
+The source code is setup as a Keil uVision project. You must install Keil in order to build the binary firmware image. Eventually, I might look into porting the project over to [SDCC](http://sdcc.sourceforge.net/), which is a free, open-source alternative to Keil, but it's not worth the effort right now. I, myself, run Keil via 'wine' within a linux environment, but running Keil in Windows should work as well.
+
+The goal of the build process is to create a binary image file that matches the size of the external EEPROM flash chip mounted on a particular LCD controller board. In most cases, this should be either a 128k, or, in some cases, a 64k chip. Once the binary image file has been successfully built, it must be flashed to the EEPROM chip.
 
 ## FLASHING
-The goal is to flash the 128K SPI flash chip with the binary image.
+The EEPROM flash chip on the LCD board must be flashed with the built binary image.
 There are various ways to achieve this goal:
 - removing / desoldering the SOIC-8 SPI flash chip and using an external programmer to flash it (Arduino, Bus Pirate, etc.)
 - MSTAR programming tool & software 
@@ -41,13 +43,13 @@ The MSTAR chips expose an i2c bus for ISP programming that can be accessed over 
 
 The basic flashrom commands are as follows:
 ```
-# read image
+# read/backup an SPI flash chip to a file
 flashrom -p mstarddc_spi:dev=/dev/i2c-1:0x49 -r backup_image.bin
 
-# verify a previously-read image
+# verify a previously-read image file
 flashrom -p mstarddc_spi:dev=/dev/i2c-1:0x49 -v backup_image.bin
 
-# write image
+# write an image file to flash
 flashrom -p mstarddc_spi:dev=/dev/i2c-1:0x49 -w firmware_image.bin 
 ```
 ### MAKE SURE TO CREATE A BACKUP IMAGE OF YOUR STOCK FIRMARE & VERIFY IT BEFORE ATTEMPTING TO FLASH A CUSTOM IMAGE!!!
@@ -56,5 +58,5 @@ flashrom -p mstarddc_spi:dev=/dev/i2c-1:0x49 -w firmware_image.bin
 
 The MSTAR ASICs have an embedded 8051 microcontroller that is used to configure various internal configuration registers. On startup, the configuration registers need to be correctly initialized based on the PCB layout, LCD type&size, and incoming signal type. Also, the configuration needs to be constantly monitored & adjusted based on the condition of the incoming video signal. Keypad inputs are also monitored for handling features such as the built-in OSD & 'input select' functionality.
 
-The MSTAR chips expose GPIO & PWM functionality which can be used to control external devices such as an LCD backlight, video tuner/receiver, LED's, etc.
+The MSTAR chips also expose GPIO & PWM functionality on certain pins which can be used to control external devices such as an LCD backlight, video tuner/receiver, LED's, etc.
 
