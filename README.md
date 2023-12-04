@@ -52,7 +52,7 @@ flashrom -p mstarddc_spi:dev=/dev/i2c-1:0x49 -v backup_image.bin
 # write an image file to flash
 flashrom -p mstarddc_spi:dev=/dev/i2c-1:0x49 -w firmware_image.bin 
 ```
-### MAKE SURE TO CREATE A BACKUP IMAGE OF YOUR STOCK FIRMARE & VERIFY IT BEFORE ATTEMPTING TO FLASH A CUSTOM IMAGE!!!
+### MAKE SURE TO CREATE A BACKUP IMAGE OF YOUR STOCK FIRMWARE & VERIFY IT BEFORE ATTEMPTING TO FLASH A CUSTOM IMAGE!!!
 
 ## BASIC WORKING CONCEPTS
 
